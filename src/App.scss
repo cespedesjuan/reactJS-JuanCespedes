@@ -1,3 +1,10 @@
+@import "~bootstrap/scss/bootstrap";
+
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
 .App {
   text-align: center;
 }
@@ -27,6 +34,10 @@
 .App-link {
   color: #61dafb;
 }
+
+
+////////////////////////
+
 
 @keyframes App-logo-spin {
   from {
