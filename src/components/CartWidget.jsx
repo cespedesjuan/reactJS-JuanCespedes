@@ -5,7 +5,7 @@ const CartWidget = () => {
     return(
         <>
             <Button variant="light">
-              <ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon><Badge bg="secondary">9</Badge>
+              <ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon><Badge bg="secondary">1</Badge>
             </Button>
         </>
         );
