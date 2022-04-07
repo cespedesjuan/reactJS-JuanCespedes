@@ -9,8 +9,8 @@ import ItemListContainer from './components/ItemListContainer';
 function App() {
   return (
     <div className="App">
-      <NavBar></NavBar>
-      <ItemListContainer></ItemListContainer>
+      <NavBar/>
+      <ItemListContainer/>
     </div>
   );
 }
