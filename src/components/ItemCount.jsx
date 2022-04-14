@@ -1,4 +1,7 @@
-import { useState } from "react"
+import { Button } from '@mui/material';
+import {Add, Remove} from '@mui/icons-material';
+import { useEffect, useState } from 'react';
+import { ProductAmountContainer, ProductAmount } from './styledComponents';
 
 const ItemCount = () => {
     const [cantidad, setCantidad] = useState(1)
@@ -27,12 +30,16 @@ const ItemCount = () => {
         }
     } 
     return (
-        <div>
-            <button onClick={restar}>{'\u00A0'}-{'\u00A0'}</button>
-            <button onClick={confirmar} >Agregar al carrito</button>
-            <button onClick={aumentar}>+</button>
-            <p>{cantidad}</p>
-        </div>
+        <ProductAmountContainer>
+        <Button style={{color:'#f06c9c'}} variant='text' onClick={aumentar}><Add/></Button>
+        <ProductAmount>{cantidad}</ProductAmount>
+        <Button style={{color:'#f06c9c'}} variant='text' onClick={restar}><Remove/></Button>
+        {
+            cantidad
+            ?<Button style={{textDecoration: "none", color: "black", background:"#ffde2d"}} variant="contained">Agregar al Carrito</Button>
+            :<Button style={{textDecoration: "none", color: "black", background:"#ffde2d"}} variant="contained" disabled>Agregar al Carrito</Button>
+        }
+    </ProductAmountContainer>
     )
 }
 

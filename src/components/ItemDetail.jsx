@@ -1,4 +1,6 @@
 import ItemCount from "./ItemCount";
+import { DetailContainer, WrapperDetail, ImgContainer, ImageDetail, InfoContainer, Title, Desc, Price } from "./styledComponents";
+
 
 const ItemDetail = ({item}) => {
     const restar = () => {
@@ -28,21 +30,26 @@ const ItemDetail = ({item}) => {
     return (
     <>
     {
-        item.image
+        item && item.image
         ?
-        <div>
-            <img src={item.image[0]}/>
-            <div>
-                <strong>{item.nombre}</strong>
-                <p>{item.descripcion}</p>
-                <strong>$ {item.precio}</strong>
-                <p>{item.stock} Unidad(es) en stock.</p>
-            </div>
-            <ItemCount stock={item.stock} initial={1} />
-        </div>
+        <DetailContainer>
+            <WrapperDetail>
+                <ImgContainer>
+                    <ImageDetail src={item.imagenURL[0]}/>
+                </ImgContainer>
+                <InfoContainer>
+                    <Title>{item.nombre}</Title>
+                    <Desc>{item.descripcion}</Desc>
+                    <Price>$ {item.precio}</Price>
+                    <Desc>{item.stock} unid. en Stock</Desc>
+                </InfoContainer>
+                <ItemCount stock={item.stock} initial={0} />
+            </WrapperDetail>
+        </DetailContainer>
         : <p>Cargando...</p>
     }
-    </>);
+    </>
+    );
 }
 
 export default ItemDetail;

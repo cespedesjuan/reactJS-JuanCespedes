@@ -1,14 +1,12 @@
-import { Button, Navbar, Nav, NavDropdown, Container, Badge } from 'react-bootstrap';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import { Badge } from "@mui/material";
+import { ShoppingCartOutlined } from "@mui/icons-material";
 
 const CartWidget = () => {
-    return(
-        <>
-            <Button variant="light">
-              <ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon><Badge bg="secondary">1</Badge>
-            </Button>
-        </>
-        );
+    return (
+        <Badge>
+            <ShoppingCartOutlined/>
+        </Badge>
+    );
 }
 
 export default CartWidget;
