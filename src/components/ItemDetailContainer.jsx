@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
-import promiseJS from '../utils/promiseJS';
+import { useParams } from 'react-router';
+import { fsFetchOne } from '../utils/fsFetch';
 import ItemDetail from './ItemDetail';
-import products from '../utils/products';
 
 const ItemDetailContainer = () => {
-    const [dato, setDato] = useState([]);
-    
+    const [dato, setDato] = useState({});
+    const { idItem } = useParams();
+
     useEffect(() => {
-        promiseJS(2000, products.find(item => item.id === parseInt(idItem)))
+        fsFetchOne(idItem)
             .then(result => setDato(result))
             .catch(err => console.log(err))
-    }, []);
+    }, [idItem]);
 
     return (
-        <ItemDetail item={dato}/>
+        <ItemDetail item={dato} />
     )
 }
 

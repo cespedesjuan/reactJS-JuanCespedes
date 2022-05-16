@@ -1,7 +1,7 @@
 import CartWidget from "./CartWidget.jsx";
 import { Link } from 'react-router-dom';
 import { AppBar } from "@mui/material";
-import { Wrapper, Logo, MenuItem, Left, Center, Right } from "./styledComponents.jsx";
+import { Wrapper, Logo, MenuItem, Left, Center, Right } from "../styles/styledComponents.jsx";
 
 const NavBar = () => {
     return (

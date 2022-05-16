@@ -1,21 +1,29 @@
-import ItemCount from "./ItemCount";
-import ItemList from "./ItemList"
-import { useState, useEffect } from "react";
-import promiseJS from "../utils/promiseJS";
-import products from "../utils/products";
+import ItemList from './ItemList.jsx';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router'
+import { fsFetch } from '../utils/fsFetch'
 
 const ItemListContainer = () => {
     const [datos, setDatos] = useState([]);
+    const { idCategory } = useParams();
+
     useEffect(() => {
-        promiseJS(2000, products)
+        fsFetch(idCategory)
             .then(result => setDatos(result))
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
+    }, [idCategory]);
+
+    useEffect(() => {
+        return (() => {
+            setDatos([]);
+        })
     }, []);
-    return(
-        <div className='ItemLista'>
+
+    return (
+        <>
             <ItemList items={datos} />
-            <ItemCount initial="1"/>
-        </div>
-    )
+        </>
+    );
 }
+
 export default ItemListContainer;

@@ -1,15 +1,16 @@
-import Item from "./Item"
+import Item from './Item';
+import { ProductsContainer } from '../styles/styledComponents';
 
-const ItemList = ({items}) => {
+const ItemList = ({ items }) => {
     return (
-        <div>
+        <ProductsContainer>
             {
-            items.length > 0
-            ? items.map(item => <Item  nombre={item.nombre} precio={item.precio} stock={item.stock} imagenURL={item.imagenURL[0]} descripcion={item.descripcion} />)
-            : <p>Cargando...</p>
+                items.length > 0
+                    ? items.map(item => <Item id={item.id} title={item.nombre} price={item.precio} pictureUrl={item.imagen} stock={item.stock} />) //En el método map se usan los nombres que se le da a cada dato en el array de productos, por eso usé "cost" en vez de "price".
+                    : <p>Cargando...</p>
             }
-        </div>
+        </ProductsContainer>
     );
 }
 
-export default ItemList
+export default ItemList;

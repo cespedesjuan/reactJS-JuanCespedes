@@ -1,57 +1,47 @@
 import { Button } from "@mui/material";
 import { useState, useContext } from "react";
 import ItemCount from "./ItemCount";
-import {Link} from 'react-router-dom';
-import { DetailContainer, WrapperDetail, ImgContainer, ImageDetail, InfoContainer, Title, Desc, Price } from "./styledComponents";
+import { Link } from 'react-router-dom';
+import { DetailContainer, WrapperDetail, ImgContainer, ImageDetail, InfoContainer, Title, Desc, Price } from "../styles/styledComponents";
 import { CartContext } from '../contexts/CartContext'
 
-const ItemDetail = ({item}) => {
-    const restar = () => {
-        if(cantidad < 2) {
-            javascript:void(0)
-        }
-        else {
-            setCantidad(cantidad-1)
-        }
+const ItemDetail = ({ item }) => {
+    const [itemCount, setItemCount] = useState(0);
+    const test = useContext(CartContext);
+
+    const onAdd = (qty) => {
+        setItemCount(qty);
+        test.agregarAlCarrito(item, qty);
     }
-    const aumentar = () => {
-        if(cantidad > 4) {
-            javascript:void(0)
-        }
-        else {
-            setCantidad(cantidad + 1)
-        }
-    }
-    const confirmar = () => {
-        if (cantidad == 1) {
-            alert("Agregaste  " + cantidad + "  producto")
-        }
-        else{
-        alert("Agregaste  " + cantidad + "  productos")
-        }
-    }
+
     return (
-    <>
-    {
-        item && item.image
-        ?
-        <DetailContainer>
-            <WrapperDetail>
-                <ImgContainer>
-                    <ImageDetail src={item.imagenURL[0]}/>
-                </ImgContainer>
-                <InfoContainer>
-                    <Title>{item.nombre}</Title>
-                    <Desc>{item.descripcion}</Desc>
-                    <Price>$ {item.precio}</Price>
-                    <Desc>{item.stock} unid. en Stock</Desc>
-                </InfoContainer>
-                <ItemCount stock={item.stock} initial={0} />
-            </WrapperDetail>
-        </DetailContainer>
-        : <p>Cargando...</p>
-    }
-    </>
+        <>
+            {
+                item && item.imagen
+                    ?
+                    <DetailContainer>
+                        <WrapperDetail>
+                            <ImgContainer>
+                                <ImageDetail src={item.imagen} />
+                            </ImgContainer>
+                            <InfoContainer>
+                                <Title>{item.nombre}</Title>
+                                <Desc>{item.descripcion}</Desc>
+                                <Price>$ {item.precio}</Price>
+                                <Desc>{item.stock} unid. en Stock</Desc>
+                            </InfoContainer>
+                            {
+                                itemCount === 0
+                                    ? <ItemCount stock={item.stock} initial={itemCount} onAdd={onAdd} />
+                                    : <Link to='/cart' style={{ textDecoration: 'none' }}><Button variant='contained' style={{ background: '#f06c9c' }}>Ver Carrito</Button></Link>
+
+
+                            }
+                        </WrapperDetail>
+                    </DetailContainer>
+                    : <p>Cargando...</p>
+            }
+        </>
     );
 }
 

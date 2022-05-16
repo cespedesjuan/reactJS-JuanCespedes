@@ -1,22 +1,24 @@
-import logo from './logo.svg';
-import './App.scss';
-import $ from 'jquery';
-import { Button, Navbar, Nav, NavDropdown, Container, Badge } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBar from './components/NavBar';
-import ItemListContainer from './components/ItemListContainer';
-import {BrowserRouter, Routes, Route, Link} from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ItemDetailContainer from "./components/ItemDetailContainer";
+import ItemListContainer from "./components/ItemListContainer";
+import NavBar from "./components/NavBar";
+import Cart from './components/Cart';
+import CartContextProvider from "./contexts/CartContext";
 
-function App() {
+const App = () => {
   return (
-    <BrowserRouter>
-    <div className="App">
-      <Routes>
-      <Route exact path="/" element= {<NavBar/>}/>
-      <Route exact path="/items" element= {<ItemListContainer/>}/>
-      </Routes>
-    </div>
-    </BrowserRouter>
+    <CartContextProvider>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path='/' element={<ItemListContainer />} />
+          <Route path='/category/:idCategory' element={<ItemListContainer />} />
+          <Route path='/item/:idItem' element={<ItemDetailContainer />} />
+          <Route path="/cart" element={<Cart key="" />} />
+        </Routes>
+      </BrowserRouter>
+    </CartContextProvider>
   );
-}
+};
+
 export default App;
